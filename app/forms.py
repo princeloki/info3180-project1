@@ -5,14 +5,14 @@ from wtforms.validators import InputRequired
 
 class PropertiesForm(FlaskForm):
     title = StringField('Property Title', validators=[InputRequired()])
-    no_bedrooms = IntegerField('No. of Rooms', validators=[InputRequired()])
+    no_bedrooms = DecimalField('No. of Rooms', validators=[InputRequired()])
     no_bathrooms = IntegerField('No. of Bathrooms', validators=[InputRequired()])
     location = StringField('Location', validators=[InputRequired()])
     price = IntegerField('Price', validators=[InputRequired()])
     type = SelectField('Property Type', 
                        choices=[
-                           ('house', 'House'),
-                           ('apartment', 'Apartment')
+                           ('House', 'House'),
+                           ('Apartment', 'Apartment')
                        ])
     description = TextAreaField('Description', validators=[InputRequired()])
     photo = FileField('Photo', validators=[

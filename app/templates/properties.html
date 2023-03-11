@@ -8,7 +8,10 @@
         <div class="back-img" style="background: url(static/{{ url_for('get_image', filename=prop.photo) }});"></div>
         <div class="prop-cont">
             <h3 class="prop-title">{{prop.title}}</h3>
-            <p class="prop-location">{{prop.location}}</p>
+            <div class="location-div">
+                <img class="location-img" src="{{url_for('static', filename='img/location.png')}}" alt="Location">
+                <p class="prop-location">{{prop.location}}</p>
+            </div>
             <p class="price-p">${{prop.price}}</p>
         </div>
         <a href="{{url_for('get_property', propertyid=prop.id)}}">View Property</a>

@@ -4,21 +4,29 @@
 
 <div class="prop">
     <div class="prop-container">
-        <img class="prop-img" src="../static/{{ url_for('get_image', filename=property.photo) }}" alt="Image of Property">
+        <div class="prop-img" style="background: url(../static/{{ url_for('get_image', filename=property.photo) }})"></div>
 
         <div class="prop-body">
-            <h2>{{property.title}}</h2>
-            <div class="cat">
-                <p class="price-p">{{property.price}}</p>
-                <p class="type-p">{{property.type}}</p>
+            <div class="prop-body-container">
+                <h2>{{property.title}}</h2>
+                <div class="cat">
+                    <p class="price-p">${{property.price}}</p>
+                    <p class="type-p">{{property.type}}</p>
+                </div>
+                <p>{{property.description}}</p>
+                <div class="specs">
+                    <div class="spec-item">
+                        <img src="{{url_for('static', filename='img/bedroom.png')}}" alt="">
+                        <p>{{property.no_bedrooms}} Bedrooms</p>
+                    </div>
+                    <div class="spec-item">
+                        <img src="{{url_for('static', filename='img/shower.png')}}" alt="">
+                        <p>{{property.no_bathrooms}} Bathrooms</p>
+                    </div>
+                </div>
+                <p>{{property.location}}</p>
+                <button class="prop-button">Email Realtor</button>
             </div>
-            <p>{{property.description}}</p>
-            <div class="specs">
-                <p>{{property.no_bedrooms}}</p>
-                <p>{{property.no_bathrooms}}</p>
-            </div>
-            <p>{{property.location}}</p>
-            <button class="prop-button">Email Realtor</button>
         </div>
     </div>
 </div>

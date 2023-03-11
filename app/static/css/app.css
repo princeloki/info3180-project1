@@ -1,11 +1,24 @@
 :root{
     --primary-color: #30967c;
-    --base: #dadada;
+    --secondary-color: #e69850;
+    --tertiary-color: #69a8f0;
+    --grayed: #c2c2c2;
+    --base: #ececec;
 }
 
 body {
     background: var(--base);
     padding-top: 5rem;
+}
+
+.home-icon{
+    width: 1.1em;
+    height: 1.1em;
+    color: #fff;
+}
+
+.display-5{
+    margin-bottom: 1em;
 }
 
 .prop-form{
@@ -34,14 +47,30 @@ label{
 
 input, select{
     height: 2em;
-    border: 1px solid #c2c2c2;
+    border: 1px solid var(--grayed);
     border-radius: 3px;
 }
 
 textarea{
-    border: 1px solid #c2c2c2;
+    border: 1px solid var(--grayed);
     border-radius: 3px;
     height: 5em;
+}
+
+#photo{
+    border: none;
+    background: var(--tertiary-color);
+    color: #fff;
+}
+
+#submit{
+    width: 20%;
+    height: 2.5em;
+    background: var(--tertiary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
 .form-sec{
@@ -84,7 +113,7 @@ nav{
 
 .card{
     width: 30%;
-    height: 30em;
+    height: 35em;
     border-radius: 5px;
 }
 
@@ -108,25 +137,29 @@ nav{
 }
 
 .prop-title{
-    font-size: 1.5em;
+    font-size: 1.4em;
+    margin-bottom: 0.2em;
+}
+
+.location-div{
+    margin-bottom: 1em;
 }
 
 .prop-location{
-    font-size: 1.2em;
-    color: #c9c9c9;
+    font-size: 1em;
+    color: #8d8d8d;
 }
 
 .price-p{
     font-size: 0.9em;
     width: 35%;
-    background: #69a8f0;
+    background: var(--tertiary-color);
     padding: 0.5em 0.5em;
     border-radius: 20px;
     color: #fff;
     font-weight: bold;
     text-align: center;
 }
-
 .card a{
     width: 100%;
     text-decoration: none;
@@ -143,4 +176,101 @@ footer{
     width: 100%;
     position: absolute;
     bottom: 0;
+}
+
+.prop{
+    background: #fff;
+    width: 80%;
+    height: auto;
+    margin: 10em auto;
+    font-weight: bold;
+}
+
+.prop-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.prop-img{
+    background-position: center !important;
+    background-size: cover !important;
+    width: 40%;
+    height: auto;
+}
+
+.prop-body{
+    width: 60%;
+}
+
+.prop-body-container{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin: 2em auto;
+}
+
+.prop-body h2{
+    margin-bottom: 1em;
+}
+
+.cat{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.cat .price-p{
+    width: 25%;
+}
+
+.type-p{
+    font-size: 0.9em;
+    width: 20%;
+    background: var(--secondary-color);
+    padding: 0.5em 0.5em;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.specs{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.spec-item{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.spec-item img{
+    width: 1.1em;
+    height: 1.1em;
+}
+
+.prop-button{
+    width: 30%;
+    height: 3em;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.location-div{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.location-img{
+    height: 1.4em;
+    width: 1.4em;
+    color: #8d8d8d;
 }
