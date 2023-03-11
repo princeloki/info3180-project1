@@ -1,11 +1,11 @@
 {% extends 'base.html' %} {% block main %}
 
-<h1 class="display-5 fw-bold">Properties</h1>
+<h1 class="display-5 fw-bold">Add New Property</h1>
 
 <div class="prop-form">
     <form action="{{url_for('create')}}" method="post" enctype="multipart/form-data">
         {{ form.csrf_token }}
-        <div class="container">
+        <div class="form-container">
             <div class="form-sec">
                 {{ form.title.label}}
     
@@ -16,25 +16,25 @@
     
                 {{ form.description(required='required') }}
             </div>
-            <div class="form-sec">
-                <div>
+            <div class="form-sec-2">
+                <div class="form-sec-2-item">
                     {{ form.no_bedrooms.label}}
         
                     {{ form.no_bedrooms(required='required') }}
                 </div>
-                <div>
+                <div class="form-sec-2-item">
                     {{ form.no_bathrooms.label}}
         
                     {{ form.no_bathrooms(required='required') }}
                 </div>
             </div>
-            <div class="form-sec">
-                <div>
+            <div class="form-sec-2">
+                <div class="form-sec-2-item">
                     {{ form.price.label}}
         
                     {{ form.price(required='required') }}
                 </div>
-                <div>
+                <div class="form-sec-2-item">
                     {{ form.type.label}}
         
                     {{ form.type(required='required') }}

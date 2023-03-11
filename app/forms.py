@@ -4,18 +4,18 @@ from wtforms import StringField, FileField, IntegerField, TextAreaField, SelectF
 from wtforms.validators import InputRequired
 
 class PropertiesForm(FlaskForm):
-    title = StringField('title', validators=[InputRequired()])
-    no_bedrooms = IntegerField('no_bedrooms', validators=[InputRequired()])
-    no_bathrooms = IntegerField('no_batthrooms', validators=[InputRequired()])
-    location = StringField('location', validators=[InputRequired()])
-    price = IntegerField('price', validators=[InputRequired()])
-    type = SelectField('type', 
+    title = StringField('Property Title', validators=[InputRequired()])
+    no_bedrooms = IntegerField('No. of Rooms', validators=[InputRequired()])
+    no_bathrooms = IntegerField('No. of Bathrooms', validators=[InputRequired()])
+    location = StringField('Location', validators=[InputRequired()])
+    price = IntegerField('Price', validators=[InputRequired()])
+    type = SelectField('Property Type', 
                        choices=[
                            ('house', 'House'),
                            ('apartment', 'Apartment')
                        ])
-    description = TextAreaField('description', validators=[InputRequired()])
-    photo = FileField('image', validators=[
+    description = TextAreaField('Description', validators=[InputRequired()])
+    photo = FileField('Photo', validators=[
         FileAllowed(['jpg', 'png'], 'Images only'),
         FileRequired()
     ])
