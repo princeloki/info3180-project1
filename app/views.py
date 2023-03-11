@@ -1,3 +1,5 @@
+
+
 """
 Flask Documentation:     https://flask.palletsprojects.com/
 Jinja2 Documentation:    https://jinja.palletsprojects.com/
@@ -19,14 +21,6 @@ from app.forms import PropertiesForm
 
 
 
-def get_uploaded_images():
-    uploads_dir = os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER'])
-    filenames = []
-    for filename in os.listdir(uploads_dir):
-        if os.path.isfile(os.path.join(uploads_dir, filename)) and ('jpg' in filename or 'png' in filename):
-            filenames.append(filename)
-    return filenames
-
 @app.route('/')
 def home():
     """Render website's home page."""
@@ -44,35 +38,35 @@ def create():
     
     if request.method == 'POST':
         if form.validate_on_submit():
-            if form.validate_on_submit():
-                title = form.title.data
-                no_bedrooms = form.no_bedrooms.data
-                no_bathrooms = form.no_bathrooms.data
-                location = form.location.data
-                price = form.price.data
-                type = form.type.data
-                description = form.description.data
-                photo = form.photo.data
-                
-                photo_path = secure_filename(photo.filename)
-                joined = os.path.join(app.config['UPLOAD_FOLDER'], photo_path)
-                photo.save(joined)
-                
-                propsmodel = PropertiesProfile(
-                    title = title,
-                    no_bedrooms = no_bedrooms,
-                    no_bathrooms = no_bathrooms,
-                    location = location,
-                    price = price,
-                    type = type,
-                    description = description,
-                    photo = photo_path
-                )
-                db.session.add(propsmodel)
-                db.session.commit()
-                flash('Property saved', 'success')
-                return redirect(url_for('properties'))
-            flash_errors(form)
+            title = form.title.data
+            no_bedrooms = form.no_bedrooms.data
+            no_bathrooms = form.no_bathrooms.data
+            location = form.location.data
+            price = form.price.data
+            type = form.type.data
+            description = form.description.data
+            photo = form.photo.data
+            
+            photo_path = secure_filename(photo.filename)
+            print(app.config['UPLOAD_FOLDER'])
+
+            photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_path))
+            
+            propsmodel = PropertiesProfile(
+                title = title,
+                no_bedrooms = no_bedrooms,
+                no_bathrooms = no_bathrooms,
+                location = location,
+                price = price,
+                type = type,
+                description = description,
+                photo = photo_path
+            )
+            db.session.add(propsmodel)
+            db.session.commit()
+            flash('Property saved', 'success')
+            return redirect(url_for('properties'))
+        flash_errors(form)
     return render_template('create.html', form=form)
 
 @app.route('/properties')

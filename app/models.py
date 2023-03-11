@@ -1,3 +1,5 @@
+
+
 from . import db
 
 class PropertiesProfile(db.Model):
@@ -8,7 +10,7 @@ class PropertiesProfile(db.Model):
     no_bedrooms = db.Column(db.Integer)
     no_bathrooms = db.Column(db.Integer)
     location = db.Column(db.String(80))
-    price = db.Column(db.Integer())
+    price = db.Column(db.Integer)
     type = db.Column(db.String(20))
     description = db.Column(db.String(500))
     photo = db.Column(db.String(255))

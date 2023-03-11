@@ -79,11 +79,13 @@ nav{
     display: flex;
     flex-direction: row;
     gap: 1em;
+    flex-wrap: wrap;
 }
 
 .card{
     width: 30%;
     height: 30em;
+    border-radius: 5px;
 }
 
 .back-img{
