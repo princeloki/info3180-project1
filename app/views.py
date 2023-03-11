@@ -48,7 +48,6 @@ def create():
             photo = form.photo.data
             
             photo_path = secure_filename(photo.filename)
-            print(app.config['UPLOAD_FOLDER'])
 
             photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_path))
             
