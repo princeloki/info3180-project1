@@ -5,13 +5,27 @@ Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file contains the routes for your application.
 """
 
-from app import app
-from flask import render_template, request, redirect, url_for
+import os
+from app import app, db
+from flask import render_template, request, redirect, url_for, flash, abort,send_from_directory, url_for
+from werkzeug.utils import secure_filename
+from app.models import PropertiesProfile
+from app.forms import PropertiesForm
 
 
 ###
 # Routing for your application.
 ###
+
+
+
+def get_uploaded_images():
+    uploads_dir = os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER'])
+    filenames = []
+    for filename in os.listdir(uploads_dir):
+        if os.path.isfile(os.path.join(uploads_dir, filename)) and ('jpg' in filename or 'png' in filename):
+            filenames.append(filename)
+    return filenames
 
 @app.route('/')
 def home():
@@ -24,7 +38,58 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
+@app.route('/properties/create', methods=['GET','POST'])
+def create():
+    form = PropertiesForm()
+    
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            if form.validate_on_submit():
+                title = form.title.data
+                no_bedrooms = form.no_bedrooms.data
+                no_bathrooms = form.no_bathrooms.data
+                location = form.location.data
+                price = form.price.data
+                type = form.type.data
+                description = form.description.data
+                photo = form.photo.data
+                
+                photo_path = secure_filename(photo.filename)
+                joined = os.path.join(app.config['UPLOAD_FOLDER'], photo_path)
+                photo.save(joined)
+                
+                propsmodel = PropertiesProfile(
+                    title = title,
+                    no_bedrooms = no_bedrooms,
+                    no_bathrooms = no_bathrooms,
+                    location = location,
+                    price = price,
+                    type = type,
+                    description = description,
+                    photo = photo_path
+                )
+                db.session.add(propsmodel)
+                db.session.commit()
+                flash('Property saved', 'success')
+                return redirect(url_for('properties'))
+            flash_errors(form)
+    return render_template('create.html', form=form)
 
+@app.route('/properties')
+def properties():
+    properties = PropertiesProfile.query.all()
+    return render_template('properties.html', properties=properties)
+
+@app.route('/properties/<propertyid>')
+def get_property(propertyid):
+    property = PropertiesProfile.query.filter_by(id=propertyid).first()
+    return render_template('view.html', property=property)
+    
+@app.route('/uploads/<path:filename>')
+def get_image(filename):
+    uploads_folder = app.config['UPLOAD_FOLDER']
+    print(uploads_folder)
+    return send_from_directory(uploads_folder, filename)
 ###
 # The functions below should be applicable to all Flask apps.
 ###

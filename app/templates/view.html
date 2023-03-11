@@ -1,0 +1,26 @@
+
+
+{% extends 'base.html' %}{% block main %}
+
+<div class="prop">
+    <div class="prop-container">
+        <img class="prop-img" src="static/{{ url_for('get_image', filename=property.photo) }}" alt="Image of Property">
+
+        <div class="prop-body">
+            <h2>{{property.title}}</h2>
+            <div class="cat">
+                <p class="price-p">{{property.price}}</p>
+                <p class="type-p">{{property.type}}</p>
+            </div>
+            <p>{{property.description}}</p>
+            <div class="specs">
+                <p>{{property.no_bedrooms}}</p>
+                <p>{{property.no_bathrooms}}</p>
+            </div>
+            <p>{{property.location}}</p>
+            <button class="prop-button">Email Realtor</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
